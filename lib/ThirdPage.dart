@@ -25,12 +25,12 @@ class _ThirdPageState extends State<ThirdPage> {
         itemCount: items.length,
         itemBuilder: (context, index) {
           return ListTile(
+            key: Key('${items[index]}'),
             title: Text('${items[index]}'),
           );
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        key: Key('3'),
         onPressed: () {
           Navigator.pop(context);
         },

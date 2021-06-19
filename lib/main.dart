@@ -76,7 +76,10 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: SlidingUpPanel(
-        panel: Center(child: Text('Panel Text')),
+        panel: Container(
+          child: Text('Panel Text'),
+          alignment: Alignment.topCenter,
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

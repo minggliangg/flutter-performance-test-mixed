@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mixed_flutter/ThirdPage.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -18,15 +20,19 @@ class _SecondPageState extends State<SecondPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Second Page'),
-      ),
+      appBar: AppBar(title: Text('Second Page')),
       body: Stack(
         children: [
           WebView(
             initialUrl: 'https://flutter.dev',
+            gestureRecognizers: Set()
+              ..add(
+                Factory<VerticalDragGestureRecognizer>(
+                    () => VerticalDragGestureRecognizer()),
+              ),
           ),
-          Center(
+          Container(
+            alignment: Alignment.bottomCenter,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -38,6 +44,9 @@ class _SecondPageState extends State<SecondPage> {
                     Navigator.pop(context);
                   },
                   child: Text('Back'),
+                ),
+                SizedBox.fromSize(
+                  size: Size(20, 0),
                 ),
                 ElevatedButton(
                   style: ButtonStyle(
@@ -58,45 +67,6 @@ class _SecondPageState extends State<SecondPage> {
           ),
         ],
       ),
-      // body: Center(
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: <Widget>[
-      //
-      //       //   Stack(
-      //       //     children: [
-      //       //       WebView(
-      //       //         initialUrl: 'https://flutter.dev',
-      //       //       ),
-      //       //       Center(
-      //       //         child: Row(
-      //       //           mainAxisAlignment: MainAxisAlignment.center,
-      //       //           children: [
-      //       //             TextButton(
-      //       //               onPressed: () {
-      //       //                 Navigator.pop(context);
-      //       //               },
-      //       //               child: Text('Back'),
-      //       //             ),
-      //       //             TextButton(
-      //       //               onPressed: () {
-      //       //                 Navigator.push(
-      //       //                   context,
-      //       //                   MaterialPageRoute(
-      //       //                     builder: (context) => ThirdPage(),
-      //       //                   ),
-      //       //                 );
-      //       //               },
-      //       //               child: Text('To Third Page'),
-      //       //             )
-      //       //           ],
-      //       //         ),
-      //       //       )
-      //       //     ],
-      //       //   ),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
